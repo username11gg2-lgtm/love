@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Наше время вместе</title>
+    <title>Мы</title>
     <script src="https://telegram.org"></script>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
         body {
             margin: 0; padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background: url('https://iimage.su') no-repeat center center fixed;
+            background: url('https://s6.iimage.su/s/21/th_gDUtTtNxiC1FUs6L7vmNiQe8JgOQWTpjjfNnbNEe3.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex; justify-content: center; align-items: center;
             min-height: 100vh; overflow: hidden;
@@ -57,16 +57,23 @@
         </div>
     </div>
     <script>
-        const tg = window.Telegram.WebApp;
-        tg.ready(); tg.expand();
+        if (window.Telegram && window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+            tg.ready(); tg.expand();
+        }
 
-        // Дата: 2025 год, 8 (это Сентябрь), 21 число
-        const startDate = new Date(2025, 8, 21, 0, 0, 0); 
+        const startDate = new Date(2026, 7, 23, 12, 30, 0); 
 
         function updateTimer() {
             const now = new Date();
             const diff = now - startDate;
-            if (diff < 0) return;
+            if (diff < 0) {
+                document.getElementById('days').innerText = 0;
+                document.getElementById('hours').innerText = 0;
+                document.getElementById('minutes').innerText = 0;
+                document.getElementById('seconds').innerText = 0;
+                return;
+            }
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
             const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
